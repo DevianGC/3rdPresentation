@@ -48,6 +48,22 @@ export default function JobDetail({ params }) {
     );
   }
 
+  // Normalize requirements to an array to avoid runtime errors when data is a string or missing
+  const toArray = (val) => {
+    if (!val) return [];
+    if (Array.isArray(val)) return val;
+    if (typeof val === 'string') {
+      try {
+        const parsed = JSON.parse(val);
+        if (Array.isArray(parsed)) return parsed;
+      } catch {}
+      return val.split(',').map((s) => s.trim()).filter(Boolean);
+    }
+    return [];
+  };
+
+  const reqs = toArray(job?.requirements);
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -57,11 +73,11 @@ export default function JobDetail({ params }) {
 
       <div className={styles.description}>
         <p>{job.description}</p>
-        {job.requirements && job.requirements.length > 0 && (
+        {reqs.length > 0 && (
           <div className={styles.requirements}>
             <h3>Requirements</h3>
             <ul>
-              {job.requirements.map((r, i) => <li key={i}>{r}</li>)}
+              {reqs.map((r, i) => <li key={i}>{r}</li>)}
             </ul>
           </div>
         )}

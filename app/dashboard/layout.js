@@ -1,6 +1,6 @@
 'use client';
 import { Suspense } from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import './dashboard.css';
 
 export default function DashboardLayout({ children }) {
   return (
@@ -12,12 +12,6 @@ export default function DashboardLayout({ children }) {
           </main>
         </Suspense>
       </div>
-      <style jsx global>{`
-        /* Hide the footer in dashboard pages */
-        body > footer {
-          display: none !important;
-        }
-      `}</style>
     </div>
   );
 }

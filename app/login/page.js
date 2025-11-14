@@ -145,6 +145,10 @@ export default function Login() {
               <Link href="/career-office/login">
                 Career Office Login
               </Link>
+              {' | '}
+              <Link href="/employer/login" className={styles.employerLink}>
+                Employer Login
+              </Link>
             </p>
           </div>
         </div>

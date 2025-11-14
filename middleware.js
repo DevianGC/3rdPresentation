@@ -8,9 +8,23 @@ export function middleware(request) {
   const isProtected = pathname.startsWith('/dashboard');
   if (!isProtected) return NextResponse.next();
 
+  // Temporarily allow access to faculty-mentor dashboard without authentication
+  if (pathname.startsWith('/dashboard/faculty-mentor')) {
+    return NextResponse.next();
+  }
+
   const session = request.cookies.get('session')?.value;
   if (!session) {
-    return NextResponse.redirect(new URL('/login', request.url));
+    // Redirect to appropriate login based on dashboard type
+    if (pathname.startsWith('/dashboard/alumni')) {
+      return NextResponse.redirect(new URL('/alumni/login', request.url));
+    } else if (pathname.startsWith('/dashboard/employer')) {
+      return NextResponse.redirect(new URL('/employer/login', request.url));
+    } else if (pathname.startsWith('/dashboard/career-office')) {
+      return NextResponse.redirect(new URL('/career-office/login', request.url));
+    } else {
+      return NextResponse.redirect(new URL('/login', request.url));
+    }
   }
   return NextResponse.next();
 }

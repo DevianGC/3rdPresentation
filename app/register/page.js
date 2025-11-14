@@ -174,7 +174,7 @@ export default function Register() {
               onChange={handleChange}
               options={[
                 { value: 'student', label: 'Student' },
-                { value: 'graduate', label: 'Graduate/Alumni' },
+                { value: 'alumni', label: 'Alumni' },
               ]}
               required
             />

@@ -260,7 +260,6 @@ export default function CareerTipsPage() {
             >
               ← Back to Tips
             </button>
-            
             <div className={styles.tipDetailHeader}>
               <span className={styles.tipCategory}>{activeTip.category}</span>
               <h1 className={styles.tipDetailTitle}>{activeTip.title}</h1>
@@ -269,7 +268,6 @@ export default function CareerTipsPage() {
                 <span>•</span>
                 <span>{activeTip.readTime}</span>
               </div>
-              
               <div className={styles.tipAuthor}>
                 <div className={styles.authorAvatar}>{activeTip.author.charAt(0)}</div>
                 <div className={styles.authorInfo}>
@@ -278,23 +276,23 @@ export default function CareerTipsPage() {
                 </div>
               </div>
             </div>
-            
             <div className={styles.tipDetailImageContainer}>
               <div className={styles.tipDetailImagePlaceholder}>
                 {/* This would be an actual image in production */}
                 {activeTip.title.charAt(0)}
               </div>
             </div>
-            
             <div 
               className={styles.tipDetailContent}
               dangerouslySetInnerHTML={{ __html: activeTip.content }}
             />
-            
-            <div className={styles.tipDetailFooter}>
-              <button className={styles.shareButton}>Share This Tip</button>
-              <button className={styles.saveButton}>Save for Later</button>
-            </div>
+            {/* Only show share/save if not featured */}
+            { !activeTip.featured && (
+              <div className={styles.tipDetailFooter}>
+                <button className={styles.shareButton}>Share This Tip</button>
+                <button className={styles.saveButton}>Save for Later</button>
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -1,75 +1,33 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { eventsAPI, handleApiError, formatDate } from '../../lib/api';
 import styles from './events.module.css';
 
 export default function EventsPage() {
-  // This would normally be fetched from an API
-  const events = [
-    {
-      id: 1,
-      title: 'Tech Career Fair 2023',
-      organizer: 'University Career Center',
-      date: '2023-11-15',
-      time: '10:00 AM - 4:00 PM',
-      location: 'University Main Hall',
-      type: 'Career Fair',
-      description: 'Connect with over 50 tech companies looking to hire for internships and full-time positions. Bring your resume and dress professionally.',
-      image: '/images/events/career-fair.jpg',
-    },
-    {
-      id: 2,
-      title: 'Resume Workshop',
-      organizer: 'Career Development Office',
-      date: '2023-11-05',
-      time: '2:00 PM - 4:00 PM',
-      location: 'Online (Zoom)',
-      type: 'Workshop',
-      description: 'Learn how to craft a standout resume that will get you noticed by recruiters. This workshop will cover formatting, content, and tailoring your resume for specific roles.',
-      image: '/images/events/resume-workshop.jpg',
-    },
-    {
-      id: 3,
-      title: 'Interview Skills Masterclass',
-      organizer: 'Career Development Office',
-      date: '2023-11-10',
-      time: '1:00 PM - 3:30 PM',
-      location: 'Business Building, Room 305',
-      type: 'Workshop',
-      description: 'Prepare for technical and behavioral interviews with this comprehensive masterclass. Practice answering common questions and receive feedback from industry professionals.',
-      image: '/images/events/interview-skills.jpg',
-    },
-    {
-      id: 4,
-      title: 'Networking Night: Tech Edition',
-      organizer: 'Alumni Association',
-      date: '2023-11-20',
-      time: '6:00 PM - 8:30 PM',
-      location: 'Downtown Convention Center',
-      type: 'Networking',
-      description: 'Meet and connect with alumni working in various tech roles. This is a great opportunity to build your professional network and learn about different career paths.',
-      image: '/images/events/networking.jpg',
-    },
-    {
-      id: 5,
-      title: 'Industry Panel: Future of AI',
-      organizer: 'Computer Science Department',
-      date: '2023-12-01',
-      time: '5:00 PM - 7:00 PM',
-      location: 'Science Building Auditorium',
-      type: 'Panel Discussion',
-      description: 'Join us for an insightful discussion on the future of AI and its impact on various industries. Panelists include leading researchers and industry professionals.',
-      image: '/images/events/ai-panel.jpg',
-    },
-  ];
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  // Format date
-  const formatDate = (dateString) => {
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  };
+  // Fetch events from API
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        setLoading(true);
+        const data = await eventsAPI.getAll({ status: 'active' });
+        setEvents(data.data);
+      } catch (err) {
+        setError(handleApiError(err));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
 
   return (
     <div className={styles.eventsPage}>
@@ -88,8 +46,35 @@ export default function EventsPage() {
       {/* Events Section */}
       <section className={styles.eventsSection}>
         <div className="container">
-          <div className={styles.eventsGrid}>
-            {events.map((event) => (
+          {loading && (
+            <div className={styles.loadingState}>
+              <div className={styles.spinner}></div>
+              <p>Loading events...</p>
+            </div>
+          )}
+          
+          {error && (
+            <div className={styles.errorState}>
+              <p className={styles.errorMessage}>{error}</p>
+              <button 
+                onClick={() => window.location.reload()} 
+                className="btn btn-primary"
+              >
+                Try Again
+              </button>
+            </div>
+          )}
+          
+          {!loading && !error && events.length === 0 && (
+            <div className={styles.emptyState}>
+              <h3>No events available</h3>
+              <p>Check back later for upcoming events and opportunities.</p>
+            </div>
+          )}
+          
+          {!loading && !error && events.length > 0 && (
+            <div className={styles.eventsGrid}>
+              {events.map((event) => (
               <div key={event.id} className={styles.eventCard}>
                 <div className={styles.eventImageContainer}>
                   <div className={styles.eventImagePlaceholder}>
@@ -130,8 +115,9 @@ export default function EventsPage() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -140,6 +126,9 @@ export default function EventsPage() {
         <div className="container">
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Want to host an event?</h2>
+            <Link href="/employer/register" className={`btn btn-primary ${styles.ctaButton}`}>
+              Register as Employer
+            </Link>
             <p className={styles.ctaText}>
               If you're an employer or organization interested in hosting an event with our career center, we'd love to hear from you.
             </p>

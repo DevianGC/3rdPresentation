@@ -40,8 +40,12 @@ export default function JobsPage() {
     
     const matchesJobType = filters.jobType === '' || job.type === filters.jobType;
     const matchesLocation = filters.location === '' || job.location === filters.location;
-    
-    return matchesSearch && matchesJobType && matchesLocation;
+  
+      // Normalize requirements to array for rendering
+      if (!Array.isArray(job.requirements)) {
+        job.requirements = job.requirements ? [job.requirements] : [];
+      }
+      return matchesSearch && matchesJobType && matchesLocation;
   });
 
   // Get unique job types and locations for filter options

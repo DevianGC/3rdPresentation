@@ -19,10 +19,9 @@ export default function CareerOfficeStudents() {
       jobPreferences: ['Frontend Developer', 'Full Stack Developer'],
       location: 'San Francisco, CA',
       availability: 'Immediate',
-      profileCompletion: 95,
       applications: 8,
-      interviews: 3,
-      avatar: '👨‍🎓'
+      avatar: '👨‍🎓',
+      profileCompletion: 95
     },
     {
       id: 2,
@@ -36,10 +35,9 @@ export default function CareerOfficeStudents() {
       jobPreferences: ['UX Designer', 'Product Designer'],
       location: 'New York, NY',
       availability: 'Immediate',
-      profileCompletion: 100,
       applications: 6,
-      interviews: 2,
-      avatar: '👩‍🎓'
+      avatar: '👩‍🎓',
+      profileCompletion: 100
     },
     {
       id: 3,
@@ -351,24 +349,10 @@ export default function CareerOfficeStudents() {
                       <div className={styles.studentUniversity}>{student.university}</div>
                       <div className={styles.studentGradYear}>Class of {student.graduationYear}</div>
                       
-                      <div className={styles.studentCompletion}>
-                        <div className={styles.completionLabel}>Profile: {student.profileCompletion}%</div>
-                        <div className={styles.completionBar}>
-                          <div 
-                            className={styles.completionFill} 
-                            style={{ width: `${student.profileCompletion}%` }}
-                          ></div>
-                        </div>
-                      </div>
-                      
                       <div className={styles.studentStats}>
                         <div className={styles.statItem}>
                           <span className={styles.statValue}>{student.applications}</span>
-                          <span className={styles.statLabel}>Applications</span>
-                        </div>
-                        <div className={styles.statItem}>
-                          <span className={styles.statValue}>{student.interviews}</span>
-                          <span className={styles.statLabel}>Interviews</span>
+                          <span className={styles.statLabel}>applications</span>
                         </div>
                       </div>
                       
@@ -461,27 +445,16 @@ export default function CareerOfficeStudents() {
                         <div className={styles.statValue}>{selectedStudent.applications}</div>
                         <div className={styles.statLabel}>Applications</div>
                       </div>
-                      <div className={styles.applicationStat}>
-                        <div className={styles.statValue}>{selectedStudent.interviews}</div>
-                        <div className={styles.statLabel}>Interviews</div>
-                      </div>
-                      <div className={styles.applicationStat}>
-                        <div className={styles.statValue}>0</div>
-                        <div className={styles.statLabel}>Offers</div>
-                      </div>
                     </div>
                   </div>
                 </div>
 
                 <div className={styles.studentDetailActions}>
-                  <button className={`btn ${styles.viewResumeButton}`}>
-                    View Resume
+                  <button className={`btn ${styles.downloadResumeButton}`}>
+                    Download Resume
                   </button>
-                  <button className={`btn ${styles.viewPortfolioButton}`}>
-                    View Portfolio
-                  </button>
-                  <button className={`btn ${styles.contactButton}`}>
-                    Contact Student
+                  <button className={`btn ${styles.hideButton}`} onClick={handleCloseStudentDetail}>
+                    Hide
                   </button>
                 </div>
               </div>

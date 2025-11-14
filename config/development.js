@@ -17,13 +17,13 @@ module.exports = {
     roles: {
       student: 'student',
       careerOffice: 'career_office',
-      graduate: 'graduate'
+      alumni: 'alumni'
     },
     defaultRole: 'student',
     tokens: {
       student: 'student-token',
       careerOffice: 'career-office-token',
-      graduate: 'graduate-token'
+      alumni: 'alumni-token'
     }
   },
   
@@ -45,18 +45,17 @@ module.exports = {
         { name: 'About', path: '/about' },
         { name: 'Dashboard', path: '/dashboard/career-office' },
       ],
-      // Graduates use the same dashboard as students in this app
-      graduate: [
+      // Alumni dashboard
+      alumni: [
         { name: 'Events', path: '/events' },
         { name: 'About', path: '/about' },
-        { name: 'Dashboard', path: '/dashboard/student' },
+        { name: 'Dashboard', path: '/dashboard/alumni' },
       ],
     },
     dashboardRedirects: {
       student: '/dashboard/student',
       careerOffice: '/dashboard/career-office',
-      // Redirect graduates to the student dashboard (shared experience)
-      graduate: '/dashboard/student',
+      alumni: '/dashboard/alumni',
     },
   },
   

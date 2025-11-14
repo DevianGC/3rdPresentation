@@ -18,10 +18,10 @@ export default function Home() {
               GCCCS CareerLink is your gateway to career success. Find jobs, build your portfolio, and connect with employers.
             </p>
             <div className={styles.heroCtas}>
-              <Button href="/register" variant="primary" size="large">
+              <Button href="/auth/register" variant="primary" size="large">
                 Get Started
               </Button>
-              <Button href="/login" variant="secondary" size="large">
+              <Button href="/auth/login" variant="secondary" size="large">
                 Login
               </Button>
             </div>
@@ -109,66 +109,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className={styles.testimonialsSection}>
-        <div className="container">
-          <h2 className={styles.sectionTitle}>Success Stories</h2>
-          <div className={styles.testimonialsGrid}>
-            <Card className={styles.testimonialCard}>
-              <CardBody>
-                <p className={styles.testimonialText}>
-                  "CareerLink helped me land my dream job at a top tech company just two months after graduation. The career guidance and job listings were invaluable!"
-                </p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.testimonialAvatar}></div>
-                  <div>
-                    <p className={styles.testimonialName}>Maria Santos</p>
-                    <p className={styles.testimonialRole}>Software Developer, Class of 2023</p>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-
-            <Card className={styles.testimonialCard}>
-              <CardBody>
-                <p className={styles.testimonialText}>
-                  "The career events and workshops organized through CareerLink gave me the confidence and skills I needed to ace my interviews and start my career journey."
-                </p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.testimonialAvatar}></div>
-                  <div>
-                    <p className={styles.testimonialName}>John Reyes</p>
-                    <p className={styles.testimonialRole}>Network Engineer, Class of 2022</p>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-
-            <Card className={styles.testimonialCard}>
-              <CardBody>
-                <p className={styles.testimonialText}>
-                  "As a student, the OJT opportunities available through CareerLink gave me real-world experience that made all the difference when applying for full-time positions."
-                </p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.testimonialAvatar}></div>
-                  <div>
-                    <p className={styles.testimonialName}>Ana Lim</p>
-                    <p className={styles.testimonialRole}>Data Analyst, Current Student</p>
-                  </div>
-                </div>
-              </CardBody>
-            </Card>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Banner */}
       <section className={styles.ctaSection}>
         <div className="container">
           <div className={styles.ctaContent}>
             <h2 className={styles.ctaTitle}>Ready to take the next step in your career?</h2>
             <p className={styles.ctaText}>Join CareerLink today and connect with opportunities tailored for GCCCS students and graduates.</p>
-            <Button href="/register" variant="primary" size="large">
+            <Button href="/auth/register" variant="primary" size="large">
               Register Now
             </Button>
           </div>
