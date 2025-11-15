@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import styles from './auth-register.module.css';
 
@@ -43,20 +44,6 @@ export default function AuthRegister() {
       link: '/alumni/register',
       color: '#f97316',
       features: ['Create mentorship groups', 'Share opportunities', 'Connect with students']
-    },
-    {
-      title: 'Career Office',
-      description: 'Manage the career services platform',
-      icon: (
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-      ),
-      link: '/register',
-      color: '#9b59b6',
-      features: ['Manage job postings', 'Organize events', 'Monitor student progress'],
-      note: 'Contact admin for registration'
     }
   ];
 
