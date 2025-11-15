@@ -10,12 +10,18 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState(getAuthConfig().defaultRole);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   
   // Get configuration
   const authConfig = getAuthConfig();
   const navConfig = getNavConfig();
+  
+  // Track when component is mounted to prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   
   // Check authentication status using session cookie via /api/me
   useEffect(() => {
@@ -93,8 +99,20 @@ export default function Navbar() {
         <div 
           className={`${styles.navLinks} ${isMenuOpen ? styles.active : ''}`}
           aria-hidden={!isMenuOpen}
+          suppressHydrationWarning
         >
-          {!isLoggedIn ? (
+          {!mounted ? (
+            // Show default state during SSR to prevent hydration mismatch
+            <>
+              {navConfig.publicLinks.map((link, index) => (
+                <Link key={index} href={link.path} className={styles.navLink}>{link.name}</Link>
+              ))}
+              <div className={styles.authButtons}>
+                <Link href="/auth/login" className={`btn btn-secondary ${styles.loginBtn}`} suppressHydrationWarning>Login</Link>
+                <Link href="/auth/register" className={`btn btn-primary ${styles.registerBtn}`} suppressHydrationWarning>Register</Link>
+              </div>
+            </>
+          ) : !isLoggedIn ? (
             <>
               {navConfig.publicLinks.map((link, index) => (
                 <Link key={index} href={link.path} className={styles.navLink}>{link.name}</Link>
