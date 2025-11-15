@@ -134,7 +134,7 @@ export default function CareerOfficeLogin() {
           <div className={styles.loginFooter}>
             {errors.general && <div className={styles.errorText}>{errors.general}</div>}
             <p className={styles.studentLink}>
-              <Link href="/login">
+              <Link href="/auth/login">
                 Student/Graduate Login
               </Link>
               {' | '}

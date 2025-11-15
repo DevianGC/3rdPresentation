@@ -188,7 +188,7 @@ export default function Register() {
           <div className={styles.registerFooter}>
             <p>
               Already have an account?{' '}
-              <Link href="/login" className={styles.loginLink}>
+              <Link href="/auth/login" className={styles.loginLink}>
                 Login here
               </Link>
             </p>

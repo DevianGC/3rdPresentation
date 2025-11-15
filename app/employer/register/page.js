@@ -410,7 +410,7 @@ export default function EmployerRegister() {
             </p>
             <div className={styles.otherLogins}>
               <p className={styles.otherLoginLink}>
-                <Link href="/register">
+                <Link href="/auth/register">
                   Student/Alumni Registration
                 </Link>
               </p>

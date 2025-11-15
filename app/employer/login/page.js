@@ -149,7 +149,7 @@ export default function EmployerLogin() {
             </p>
             <div className={styles.otherLogins}>
               <p className={styles.otherLoginLink}>
-                <Link href="/login">
+                <Link href="/auth/login">
                   Student/Alumni Login
                 </Link>
               </p>

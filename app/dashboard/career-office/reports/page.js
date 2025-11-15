@@ -23,7 +23,7 @@ export default function ReportsPage() {
         } else if (role === authConfig.roles.graduate) {
           router.push(navConfig.dashboardRedirects.graduate);
         } else {
-          router.push('/login');
+          router.push('/auth/login');
         }
       }
     }

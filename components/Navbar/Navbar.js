@@ -100,9 +100,9 @@ export default function Navbar() {
                 <Link key={index} href={link.path} className={styles.navLink}>{link.name}</Link>
               ))}
               <div className={styles.authButtons}>
-                <Link href="/login" className={`btn btn-secondary ${styles.loginBtn}`}>Login</Link>
+                <Link href="/auth/login" className={`btn btn-secondary ${styles.loginBtn}`}>Login</Link>
                 {/* Career Office login is only accessible directly via URL, not from navbar */}
-                <Link href="/register" className={`btn btn-primary ${styles.registerBtn}`}>Register</Link>
+                <Link href="/auth/register" className={`btn btn-primary ${styles.registerBtn}`}>Register</Link>
               </div>
             </>
           ) : (

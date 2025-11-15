@@ -137,7 +137,7 @@ export default function Login() {
           <div className={styles.loginFooter}>
             <p>
               Don't have an account?{' '}
-              <Link href="/register" className={styles.registerLink}>
+              <Link href="/auth/register" className={styles.registerLink}>
                 Register here
               </Link>
             </p>

@@ -23,7 +23,8 @@ export function middleware(request) {
     } else if (pathname.startsWith('/dashboard/career-office')) {
       return NextResponse.redirect(new URL('/career-office/login', request.url));
     } else {
-      return NextResponse.redirect(new URL('/login', request.url));
+      // Redirect to role selection page for students and other roles
+      return NextResponse.redirect(new URL('/auth/login', request.url));
     }
   }
   return NextResponse.next();
